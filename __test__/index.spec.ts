@@ -1,11 +1,6 @@
 import test from 'ava'
 
-import { readFileAsync, asyncPlus100, asyncFib, updateAgdvt } from '../index'
-
-test('[Read File]: from native', async (t) => {
-  const content = await readFileAsync('src/ff.rs')
-  t.assert(!!content)
-})
+import { asyncPlus100, asyncFib, updateAgdvt } from '../index'
 
 test('[Plus 100 sleep]: from native', async (t) => {
   const content = await asyncPlus100(Promise.resolve(10))
