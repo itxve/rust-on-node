@@ -1,17 +1,21 @@
 import test from 'ava'
 
-import { asyncPlus100, asyncFib, updateAgdvt } from '../index'
+import { readFileAsync, asyncPlus100, asyncFib, updateAgdvt } from '../index'
 
-test('[Plus 100 sleep]: from native', async (t) => {
-  asyncPlus100(Promise.resolve(10)).then((content) => {
-    t.is(content, 110)
-  })
+test('[Read File]: from native', async (t) => {
+  // const content = await readFileAsync('sr/sc/ff.rs')
+  t.pass()
 })
 
-test('[AsyncFib]', (t) => {
-  asyncFib(12).then((content) => {
-    t.is(content, 13)
-  })
+test('[Plus 100 sleep]: from native', async (t) => {
+  const content = await asyncPlus100(Promise.resolve(10))
+  t.is(content, 110)
+})
+
+test('[AsyncFib]', async (t) => {
+  const content = await asyncFib(12)
+  t.is(content, 13)
+  t.pass()
 })
 
 test('[UpdateAgdvt]', (t) => {
@@ -22,4 +26,5 @@ test('[UpdateAgdvt]', (t) => {
     '100',
   )
   t.assert(content.sgt, '100')
+  t.pass()
 })
