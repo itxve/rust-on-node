@@ -106,9 +106,5 @@
     "trailingComma": "all",
     "singleQuote": true,
     "arrowParens": "always"
-  },
-  "packageManager": "yarn@3.6.0",
-  "dependencies": {
-    "@itxve/rust-on-node": "^1.0.0"
   }
 }

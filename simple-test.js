@@ -1,3 +1,5 @@
-const { plus100 } = require('@itxve/rust-on-node')
+const { plus100 } = require('./index')
 
-console.info('Simple test passed', plus100(1, 90000))
+console.assert(plus100(0, 2) === 3, 'Simple test failed')
+
+console.info('Simple test passed')
