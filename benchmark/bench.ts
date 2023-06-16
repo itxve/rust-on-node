@@ -2,24 +2,31 @@ import b from 'benny'
 
 import { plus100 } from '../index'
 
-function add(a: number) {
-  return a + 100
+function add(start: number, end: number) {
+  let rt = 0
+  for (let index = start; index < end; index++) {
+    rt += index
+  }
+  return rt
 }
 
 async function run() {
-  await b.suite(
-    'Add 100',
+  const start = 0
+  const end = 500
 
-    b.add('Native a + 100', () => {
-      plus100(10)
+  await b.suite(
+    `Add ${start}-${end}`,
+    b.add('Native', () => {
+      plus100(start, end)
     }),
 
-    b.add('JavaScript a + 100', () => {
-      add(10)
+    b.add('JavaScript', () => {
+      add(start, end)
     }),
 
     b.cycle(),
     b.complete(),
+    b.save({ file: 'add-test', format: 'chart.html' }),
   )
 }
 

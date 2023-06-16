@@ -3,7 +3,8 @@ import test from 'ava'
 import { readFileAsync, eat, asyncPlus100, asyncFib, updateAgdvt } from '../index'
 
 test('[Read File]: from native', async (t) => {
-  // const content = await readFileAsync('sr/sc/ff.rs')
+  const content = await readFileAsync('README.md')
+  console.log('README.md', '\r\n', String(content))
   t.pass()
 })
 

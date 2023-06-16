@@ -234,9 +234,10 @@ if (!nativeBinding) {
   throw new Error(`Failed to load native binding`)
 }
 
-const { eat, readFileAsync, asyncPlus100, asyncFib, updateAgdvt } = nativeBinding
+const { eat, plus100, readFileAsync, asyncPlus100, asyncFib, updateAgdvt } = nativeBinding
 
 module.exports.eat = eat
+module.exports.plus100 = plus100
 module.exports.readFileAsync = readFileAsync
 module.exports.asyncPlus100 = asyncPlus100
 module.exports.asyncFib = asyncFib
