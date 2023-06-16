@@ -1,6 +1,6 @@
 {
   "name": "@itxve/rust-on-node-linux-x64-gnu",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "os": [
     "linux"
   ],
@@ -11,7 +11,7 @@
   "files": [
     "rust-on-node.linux-x64-gnu.node"
   ],
-  "description": "Template project for writing node package with napi-rs",
+  "description": "demo use napi-rs",
   "keywords": [
     "napi-rs",
     "NAPI",
@@ -28,7 +28,7 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "repository": "git@github.com:napi-rs/rust-on-node.git",
+  "repository": "git@github.com:itxve/rust-on-node.git",
   "libc": [
     "glibc"
   ]

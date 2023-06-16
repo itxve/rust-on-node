@@ -459,32 +459,33 @@ jobs:
       - name: List packages
         run: ls -R ./npm
         shell: bash
-      # - name: Publish Npm
-      #   run: |
-      #     if git log -1 --pretty=%B | grep "^[0-9]\+\.[0-9]\+\.[0-9]\+$";
-      #     then
-      #       echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
-      #       npm publish --access public
-      #     elif git log -1 --pretty=%B | grep "^[0-9]\+\.[0-9]\+\.[0-9]\+";
-      #     then
-      #       echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
-      #       npm publish --tag next --access public
-      #     else
-      #       echo "Not a release, skipping publish"
-      #     fi
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: Publish Npm To Github
+      - name: Publish Npm
         run: |
           if git log -1 --pretty=%B | grep "^[0-9]\+\.[0-9]\+\.[0-9]\+$";
           then
-            echo "//npm.pkg.github.com/:_authToken=$NPM_TOKEN" >> ./.npmrc
+            echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
             npm publish --access public
           elif git log -1 --pretty=%B | grep "^[0-9]\+\.[0-9]\+\.[0-9]\+";
           then
-            echo "//npm.pkg.github.com/:_authToken=$NPM_TOKEN" >> ./.npmrc
+            echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
             npm publish --tag next --access public
+          else
+            echo "Not a release, skipping publish"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Publish Npm To Github
+        run: |
+          sed '$d' ~/.npmrc
+          if git log -1 --pretty=%B | grep "^[0-9]\+\.[0-9]\+\.[0-9]\+$";
+          then
+            echo "//npm.pkg.github.com/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+            registry=github npm publish --access public
+          elif git log -1 --pretty=%B | grep "^[0-9]\+\.[0-9]\+\.[0-9]\+";
+          then
+            echo "//npm.pkg.github.com/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+            registry=github npm publish --tag next --access public
           else
             echo "Not a release, skipping publish to github"
           fi
