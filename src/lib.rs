@@ -7,6 +7,7 @@ use futures::prelude::*;
 use napi::bindgen_prelude::*;
 use napi::*;
 use tokio::fs;
+mod my;
 
 #[napi]
 pub async fn read_file_async(path: String) -> Result<Buffer> {

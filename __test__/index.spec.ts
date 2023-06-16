@@ -1,9 +1,14 @@
 import test from 'ava'
 
-import { readFileAsync, asyncPlus100, asyncFib, updateAgdvt } from '../index'
+import { readFileAsync, eat, asyncPlus100, asyncFib, updateAgdvt } from '../index'
 
 test('[Read File]: from native', async (t) => {
   // const content = await readFileAsync('sr/sc/ff.rs')
+  t.pass()
+})
+
+test('[Eat]: from native', async (t) => {
+  eat('play ping pong')
   t.pass()
 })
 
